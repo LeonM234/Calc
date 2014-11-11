@@ -2,55 +2,78 @@ function displayOutput(){
   return $('#displayoutput').val();
 }
 
-var prior = 0;
+var previousResult;
+var nextOperation;
 
-function press(buttonValue){
+function add(a, b){
+  return ((a * 100000000000000) + (b * 100000000000000))/100000000000000
+}
 
-  switch (buttonValue) {
-    case '+':
-      prior += +$('#displayoutput').val();
+function subtraction(a, b){
+  return ((a * 100000000000000) - (b * 100000000000000))/100000000000000
+}
 
-      // NEED TO DEAL WITH FLOATING POINT IMPRECISION
-      // prior = (((prior * 10) + (+$('#displayoutput').val() * 10)) / 10);
-      // ((prior * 10) + (+$('#displayoutput').val() * 10)) / 10;
-      $('#displayoutput').val('');
-      break;
+function multiply(a, b){
+  return a * b;
+}
 
-    case '-':
-      // handle -
-      prior = prior - +$('#displayoutput').val();
-      $('#displayoutput').val('');
-      break;
+function divide(a, b){
+  return (a)/(b);
+}
 
-    case '*':
-      // handle *
-      break;
+function currentValue(string){
+  return $('#displayoutput').val() * 1;
+}
 
-    case '/':
-      // handle /
-      break;
+function calculate(){
+  if(!!nextOperation){ //if nextOperation is there, then do this function. Made nextOperation a boolean value and stated if it was false, false (or true)
+  previousResult = nextOperation(previousResult, currentValue());
 
-    case 'C':
-      // handle C
-      break;
-
-    case '=':
-      prior += $('#displayoutput').val() * 1;
-      $('#displayoutput').val(prior);
-      prior = 0;
-      break;
-
-    case '+/-':
-      // handle +/-
-      break;
-
-    default:
-      var current =  $('#displayoutput').val();
-      $('#displayoutput').val(current += buttonValue);
+  } else {
+    previousResult = currentValue();
   }
 }
 
-// set prior = to buttonValue
-  // multiply prior by 10
-  // multiply next button press by 10
-  //
+function press(buttonValue){
+  switch (buttonValue) {
+    case '+':
+      calculate();
+      nextOperation = add;
+      $('#displayoutput').val('');
+
+      break;
+    case '-':
+      // handle -
+      calculate();
+      nextOperation = subtraction;
+      $('#displayoutput').val('');
+      break;
+    case '*':
+      calculate();
+      nextOperation = multiply;
+      $('#displayoutput').val('');
+      break;
+    case '/':
+      // handle /
+      calculate();
+      nextOperation = divide;
+      $('#displayoutput').val('');
+      break;
+    case 'C':
+      // handle C
+      break;
+    case '=':
+      calculate();
+      nextOperation = undefined;
+      $('#displayoutput').val(previousResult);
+      break;
+    case '+/-':
+      // handle +/-
+      break;
+    default:
+      var current = $('#displayoutput').val();
+      $('#displayoutput').val(current + buttonValue);
+  }
+}
+
+
