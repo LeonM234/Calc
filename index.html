@@ -1,1 +1,52 @@
-
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="main.css" />
+   <title> Calculator </title>
+  </head>
+  <body>
+      <h1> </h1>
+      <div id="wrapper">
+      <div id="output">
+          <input id="displayoutput">
+        </div>
+      <table>
+        <tr>
+            <td class="operator">C</td>
+            <td class="operator">+/-</td>
+            <td class="operator">:)</td>
+            <td class="operator">/</td>
+        </tr>
+        <tr>
+            <td class="number">7</td>
+            <td class="number">8</td>
+            <td class="number">9</td>
+            <td class="operator">*</td>
+        </tr>
+        <tr>
+            <td class="number">4</td>
+            <td class="number">5</td>
+            <td class="number">6</td>
+            <td class="operator">-</td>
+        </tr>
+        <tr>
+            <td class="number">1</td>
+            <td class="number">2</td>
+            <td class="number">3</td>
+            <td class="operator">+</td>
+        </tr>
+        <tr id="last_row">
+            <td class="number" id="zero">0</td>
+            <td class="number">.</td>
+            <td class="number"></td>
+            <td class="operator">=</td>
+        </tr>
+      </table>
+      </div>
+      <script src="bower_components/jquery/dist/jquery.min.js"></script>
+      <script src="main.js"></script>
+  </body>
+</html>

@@ -142,7 +142,7 @@
       it('should be 24', function(){
         type(3, '*', 4, '*', 2, '=')
         assert.equal(displayOutput(), '24');
-      });
+      });m
     });
 
     describe('3 * 4 + 2 =', function(){
